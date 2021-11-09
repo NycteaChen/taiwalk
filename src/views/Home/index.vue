@@ -5,12 +5,11 @@
 </template>
 
 <script>
-import HomePageTop from "@/components/HomePageTop.vue";
-
+import HomePageTop from '@/components/_pages/homepage/HomePageTop'
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {
     HomePageTop,
   },
-};
+}
 </script>
