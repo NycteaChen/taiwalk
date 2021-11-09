@@ -1,25 +1,29 @@
 <template>
-  <header>
-    <img
-      @click="backToHome"
-      class="mobile-header"
-      :src="require('../../assets/Icon/Logo-mobile.svg')"
-    />
-    <img @click="backToHome" class="pc-header" :src="require('@/assets/Icon/Logo-PC.svg')" />
+  <div class="header">
+    <header>
+      <img
+        @click="backToHome"
+        class="mobile-header"
+        :src="require('../../assets/Icon/Logo-mobile.svg')"
+      />
+      <img @click="backToHome" class="pc-header" :src="require('@/assets/Icon/Logo-PC.svg')" />
 
-    <img
-      @click="handleMobileMenu"
-      class="mobile-menu"
-      :src="require(`@/assets/Icon/menu-mobile${state.showMobileMenu ? '-close' : ''}.svg`)"
-    />
+      <img
+        @click="handleMobileMenu"
+        class="mobile-menu"
+        :src="require(`@/assets/Icon/menu-mobile${state.showMobileMenu ? '-close' : ''}.svg`)"
+      />
 
-    <nav>
-      <router-link :class="{ open: state.showMobileMenu }" to="/attractions">探索景點</router-link>
-      <router-link :class="{ open: state.showMobileMenu }" to="/activities">節慶活動</router-link>
-      <router-link :class="{ open: state.showMobileMenu }" to="/food">品嘗美食</router-link>
-    </nav>
-    <div v-if="state.showMobileMenu" :class="{ mask: state.showMobileMenu }" />
-  </header>
+      <nav>
+        <router-link :class="{ open: state.showMobileMenu }" to="/attractions">
+          探索景點
+        </router-link>
+        <router-link :class="{ open: state.showMobileMenu }" to="/activities">節慶活動</router-link>
+        <router-link :class="{ open: state.showMobileMenu }" to="/food">品嚐美食</router-link>
+      </nav>
+      <div v-if="state.showMobileMenu" :class="{ mask: state.showMobileMenu }" />
+    </header>
+  </div>
 </template>
 <script>
 import { reactive } from 'vue'
@@ -59,15 +63,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 64px;
+  background: #fff;
+}
 header {
   position: fixed;
   top: 0;
+  z-index: 2;
   width: 100%;
-  max-width: 1240px;
+  max-width: 1200px;
   height: 64px;
   display: flex;
   align-items: center;
-  z-index: 2;
   background: #fff;
 
   .mobile-header {
@@ -176,6 +188,7 @@ header {
       align-items: center;
       justify-content: space-between;
       width: 220px;
+      border-end-start-radius: unset;
       a {
         height: 32px;
         line-height: 32px;
