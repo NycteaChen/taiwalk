@@ -1,9 +1,24 @@
 <template>
   <div class="header">
-    <h1>近期活動</h1>
-    <a>查看更多活動</a>
+    <h1>{{ title }}</h1>
+    <a>{{ showMore }}</a>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    showMore: {
+      type: String,
+      default: '',
+    },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .header {

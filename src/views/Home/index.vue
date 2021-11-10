@@ -2,13 +2,13 @@
   <div class="home">
     <HomePageTop />
     <Carousel />
-    <ShowMoreHeader />
+    <RecentActivities />
   </div>
 </template>
 
 <script>
 import HomePageTop from '@/components/_pages/homepage/HomePageTop'
-import ShowMoreHeader from '@/components/ShowMoreHeader'
+import RecentActivities from '@/components/_pages/homepage/RecentActivities'
 import Carousel from '@/components/Carousel'
 
 export default {
@@ -16,7 +16,7 @@ export default {
   components: {
     HomePageTop,
     Carousel,
-    ShowMoreHeader,
+    RecentActivities,
   },
 }
 </script>
