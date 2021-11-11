@@ -1,5 +1,13 @@
 <template>
   <div class="food">
-    <h1>food</h1>
+    <HintHeader :category="'food'" />
   </div>
 </template>
+<script>
+import HintHeader from '@/components/HintHeader'
+export default {
+  components: {
+    HintHeader,
+  },
+}
+</script>

@@ -1,5 +1,13 @@
 <template>
   <div class="activities">
-    <h1>activities</h1>
+    <HintHeader :category="'activities'" />
   </div>
 </template>
+<script>
+import HintHeader from '@/components/HintHeader'
+export default {
+  components: {
+    HintHeader,
+  },
+}
+</script>

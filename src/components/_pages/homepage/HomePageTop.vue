@@ -146,14 +146,13 @@ export default {
     }
   }
   @media (min-width: 768px) {
-    margin: 145px auto 60px;
+    margin: 85px auto 60px;
     display: flex;
     width: 90%;
     max-width: 960px;
     justify-content: space-between;
     align-items: center;
     h1 {
-      /* font-size: 48px; */
       text-align: left;
     }
     .travel-guide {
@@ -179,6 +178,7 @@ export default {
     }
   }
   @media (min-width: 950px) {
+    margin-top: 145px;
     h1 {
       font-size: 48px;
     }
