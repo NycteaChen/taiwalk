@@ -7,7 +7,7 @@
       </h1>
       <h1>讓我們更親近這片土地</h1>
       <div class="travel-guide">
-        <img :src="require('@/assets/Icon/spot24_Y.svg')" />
+        <img :src="require('@/assets/img/icon/spot24_Y.svg')" />
         <span>台灣旅遊景點導覽&nbsp;&nbsp;</span>
         <span>Taiwan Travel Guide</span>
       </div>
@@ -28,7 +28,7 @@
       </div>
       <div>
         <button>
-          <img :src="require('@/assets/Icon/search.svg')" />
+          <img :src="require('@/assets/img/icon/search.svg')" />
           <span>搜尋</span>
         </button>
       </div>
@@ -43,8 +43,8 @@
 
 <script>
 import { reactive } from 'vue'
-import arrowDownSVG from '@/assets/Icon/arrow-down.svg'
-import arrowUpSVG from '@/assets/Icon/arrow-up.svg'
+import arrowDownSVG from '@/assets/img/icon/arrow-down.svg'
+import arrowUpSVG from '@/assets/img/icon/arrow-up.svg'
 
 export default {
   setup() {
@@ -131,6 +131,7 @@ export default {
       color: #fff;
       font-weight: 700;
       background: #7f977b;
+      transition: 0.3s background-color;
       img {
         display: inline-block;
         margin-right: 20px;
@@ -138,6 +139,9 @@ export default {
       span {
         vertical-align: middle;
         letter-spacing: 25px;
+      }
+      &:hover {
+        background: #65895f;
       }
     }
   }

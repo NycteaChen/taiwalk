@@ -7,7 +7,7 @@
     <div class="img-site">新北市&nbsp;|&nbsp;不厭亭</div>
     <div class="dots">
       <div class="dot" v-for="index in 6" :key="index">
-        <img :src="require('@/assets/carousel/Dot_selected.svg')" />
+        <img :src="require('@/assets/img/icon/carousel/Dot_selected.svg')" />
       </div>
     </div>
   </div>

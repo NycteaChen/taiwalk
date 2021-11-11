@@ -138,7 +138,7 @@ export default {
 
             &::before {
               content: '';
-              background: url('../../../assets/Icon/spot16.svg') no-repeat;
+              background: url('../../../assets/img/icon/spot16.svg') no-repeat;
               width: 16px;
               height: 16px;
               position: absolute;
