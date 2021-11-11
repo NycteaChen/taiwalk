@@ -69,7 +69,7 @@ export default {
 .recent-activities {
   width: 80%;
   max-width: 345px;
-  margin: auto;
+  margin: auto auto 36px;
   .recent-activity {
     cursor: pointer;
     display: flex;
@@ -101,13 +101,14 @@ export default {
     max-width: 1100px;
 
     .recent-activity {
-      min-height: 160px;
+      height: 160px;
       background: #f9f9f9;
       border: 1px solid #e5e5e5;
       border-radius: 8px;
       .event-img {
         margin-right: 18px;
         width: 160px;
+        height: 160px;
         overflow: hidden;
         img {
           border-top-right-radius: unset;

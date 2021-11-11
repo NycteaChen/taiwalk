@@ -3,6 +3,8 @@
     <HomePageTop />
     <Carousel />
     <RecentActivities />
+    <Recommend :title="'熱門打卡景點'" :show-more="'查看更多景點'" />
+    <Recommend :title="'一再回訪美食'" :show-more="'查看更多美食'" />
   </div>
 </template>
 
@@ -10,6 +12,7 @@
 import HomePageTop from '@/components/_pages/homepage/HomePageTop'
 import RecentActivities from '@/components/_pages/homepage/RecentActivities'
 import Carousel from '@/components/Carousel'
+import Recommend from '@/components/Recommend'
 
 export default {
   name: 'HomeView',
@@ -17,6 +20,7 @@ export default {
     HomePageTop,
     Carousel,
     RecentActivities,
+    Recommend,
   },
 }
 </script>

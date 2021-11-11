@@ -10,8 +10,23 @@
         <img :src="require('@/assets/img/icon/carousel/Dot_selected.svg')" />
       </div>
     </div>
+    <div class="arrow-left" />
+    <div class="arrow-right" />
   </div>
 </template>
+<script>
+// import arrowLeft from '@/assets/img/icon/carousel/Arrow-Left.svg'
+// import arrowLeftHover from '@/assets/img/icon/carousel/Arrow-Left_hover.svg'
+// import arrowLeftDisable from '@/assets/img/icon/carousel/Arrow-Left_disable.svg'
+// import arrowRight from '@/assets/img/icon/carousel/Arrow-Right.svg'
+// import arrowRightHover from '@/assets/img/icon/carousel/Arrow-Right_hover.svg'
+// import arrowRightDisable from '@/assets/img/icon/carousel/Arrow-Right_disable.svg'
+
+export default {
+  setup() {},
+}
+</script>
+
 <style lang="scss" scoped>
 .carousel-container {
   width: 80%;
@@ -43,9 +58,14 @@
       margin-left: 5px;
     }
   }
+  .arrow-left,
+  .arrow-right {
+    display: none;
+  }
   @media (min-width: 768px) {
     width: 90%;
     max-width: 1110px;
+    position: relative;
     .img-site {
       font-size: 28px;
     }
@@ -58,6 +78,29 @@
       .dot {
         width: 16px;
         margin-left: 16px;
+      }
+    }
+    .arrow-left,
+    .arrow-right {
+      display: block;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: 50%;
+      cursor: pointer;
+    }
+    .arrow-left {
+      left: 30px;
+      background: url('../../assets/img/icon/carousel/Arrow-Left.svg');
+      &:hover {
+        background: url('../../assets/img/icon/carousel/Arrow-Left_hover.svg');
+      }
+    }
+    .arrow-right {
+      right: 30px;
+      background: url('../../assets/img/icon/carousel/Arrow-Right.svg');
+      &:hover {
+        background: url('../../assets/img/icon/carousel/Arrow-Right_hover.svg');
       }
     }
   }

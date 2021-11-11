@@ -146,7 +146,7 @@ export default {
     }
   }
   @media (min-width: 768px) {
-    margin: 85px auto 0;
+    margin: 145px auto 60px;
     display: flex;
     width: 90%;
     max-width: 960px;
