@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 .carousel-container {
-  width: 80%;
+  width: 90%;
   max-width: 345px;
   margin: 38px auto 24px;
   position: relative;
@@ -63,7 +63,6 @@ export default {
     display: none;
   }
   @media (min-width: 768px) {
-    width: 90%;
     max-width: 1110px;
     position: relative;
     .img-site {

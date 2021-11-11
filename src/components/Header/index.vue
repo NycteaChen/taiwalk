@@ -15,11 +15,27 @@
       />
 
       <nav>
-        <router-link :class="{ open: state.showMobileMenu }" to="/attractions">
+        <router-link
+          :class="{ open: state.showMobileMenu }"
+          to="/attractions"
+          @click="state.showMobileMenu = false"
+        >
           探索景點
         </router-link>
-        <router-link :class="{ open: state.showMobileMenu }" to="/activities">節慶活動</router-link>
-        <router-link :class="{ open: state.showMobileMenu }" to="/food">品嚐美食</router-link>
+        <router-link
+          :class="{ open: state.showMobileMenu }"
+          to="/activities"
+          @click="state.showMobileMenu = false"
+        >
+          節慶活動
+        </router-link>
+        <router-link
+          :class="{ open: state.showMobileMenu }"
+          to="/food"
+          @click="state.showMobileMenu = false"
+        >
+          品嚐美食
+        </router-link>
       </nav>
       <div v-if="state.showMobileMenu" :class="{ mask: state.showMobileMenu }" />
     </header>
@@ -138,7 +154,7 @@ export default {
         height: 0;
         opacity: 0;
         visibility: hidden;
-        transition: 0.8s height, 0.4s opacity, 0.5s visibility;
+        transition: 0.5s height, 0.2s opacity, 0.3s visibility;
         &:last-of-type {
           border-end-start-radius: 30px;
         }
