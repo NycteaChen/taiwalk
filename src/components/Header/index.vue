@@ -4,14 +4,14 @@
       <img
         @click="backToHome"
         class="mobile-header"
-        :src="require('../../assets/Icon/Logo-mobile.svg')"
+        :src="require('../../assets/img/icon/Logo-mobile.svg')"
       />
-      <img @click="backToHome" class="pc-header" :src="require('@/assets/Icon/Logo-PC.svg')" />
+      <img @click="backToHome" class="pc-header" :src="require('@/assets/img/icon/Logo-PC.svg')" />
 
       <img
         @click="handleMobileMenu"
         class="mobile-menu"
-        :src="require(`@/assets/Icon/menu-mobile${state.showMobileMenu ? '-close' : ''}.svg`)"
+        :src="require(`@/assets/img/icon/menu-mobile${state.showMobileMenu ? '-close' : ''}.svg`)"
       />
 
       <nav>

@@ -38,7 +38,7 @@ export default {
     padding-right: 15px;
     &::after {
       content: '';
-      background: url('../../assets/Icon/arrow-right16_R.svg') no-repeat;
+      background: url('../../assets/img/icon/arrow-right16_R.svg') no-repeat;
       background-position-x: 5px;
       background-position-y: 5px;
       width: 24px;
