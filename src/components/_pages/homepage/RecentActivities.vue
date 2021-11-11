@@ -67,7 +67,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .recent-activities {
-  width: 80%;
+  width: 90%;
   max-width: 345px;
   margin: auto auto 36px;
   .recent-activity {
@@ -97,7 +97,6 @@ export default {
   }
 
   @media (min-width: 768px) {
-    width: 90%;
     max-width: 1100px;
 
     .recent-activity {

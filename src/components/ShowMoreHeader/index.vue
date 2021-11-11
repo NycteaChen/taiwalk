@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  width: 80%;
+  width: 90%;
   max-width: 345px;
   margin: auto;
   display: flex;
@@ -54,7 +54,6 @@ export default {
     }
   }
   @media (min-width: 768px) {
-    width: 90%;
     max-width: 1100px;
     h1 {
       font-size: 36px;

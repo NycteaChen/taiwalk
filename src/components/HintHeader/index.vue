@@ -57,7 +57,7 @@ export default {
 <style lang="scss" scoped>
 .top-bar {
   margin: 90px auto 16px;
-  width: 80%;
+  width: 90%;
   text-align: left;
   font-size: 12px;
   a {
@@ -75,7 +75,6 @@ export default {
   }
   @media (min-width: 768px) {
     margin: 145px auto 30px;
-    width: 90%;
     max-width: 1110px;
     font-size: 16px;
   }

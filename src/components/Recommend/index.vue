@@ -53,7 +53,7 @@ export default {
 .recommend-items {
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   margin: auto auto 36px;
   .recommend-item {
     cursor: pointer;
@@ -81,7 +81,6 @@ export default {
     }
   }
   @media (min-width: 768px) {
-    width: 90%;
     .recommend-item {
       .photo {
         width: 255px;

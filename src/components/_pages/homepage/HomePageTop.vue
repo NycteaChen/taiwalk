@@ -83,7 +83,7 @@ export default {
     color: #646464;
     display: flex;
     margin: auto;
-    width: 80%;
+    width: 90%;
     justify-content: center;
     align-items: center;
     span {
@@ -100,7 +100,7 @@ export default {
     button {
       padding: 11px 30px;
       height: 50px;
-      width: 80%;
+      width: 90%;
       max-width: 345px;
       border-radius: 5px;
       border: 1px solid #e6e6e6;
