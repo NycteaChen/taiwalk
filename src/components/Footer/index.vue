@@ -8,6 +8,7 @@
 
 <style lang="scss" scoped>
 footer {
+  margin-top: 50px;
   width: 100%;
   padding: 15px;
   background: #65895f;

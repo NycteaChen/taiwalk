@@ -35,7 +35,7 @@ export default {
         case 1:
           return 'attractions'
         case 2:
-          return 'Activities'
+          return 'activities'
         case 3:
           return 'food'
         default:
