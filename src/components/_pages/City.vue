@@ -1,16 +1,19 @@
 <template>
   <HintHeader :category="category" :city="name" />
+  <Search :defaultCity="name" :options="state.list[category]" />
   <SearchResult :data="state.data" />
 </template>
 <script>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import HintHeader from '@/components/HintHeader'
+import Search from '@/components/Search'
 import SearchResult from '@/components/SearchResult'
 
 export default {
   components: {
     HintHeader,
+    Search,
     SearchResult,
   },
   setup() {
@@ -29,9 +32,22 @@ export default {
         },
         {
           title: '象山啦',
-          city: '台北市',
+          city: '臺北市',
         },
       ],
+      list: {
+        food: ['地方特產', '中式美食', '甜點冰品', '異國料理', '伴手禮', '素食'],
+        attractions: [
+          '自然風景類',
+          '觀光工廠類',
+          '遊憩類',
+          '休閒農業類',
+          '生態類',
+          '溫泉類',
+          '古蹟類',
+        ],
+        activities: ['節慶活動', '自行車活動', '遊憩活動', '產業文化活動', '年度活動', '四季活動'],
+      },
     })
 
     return {

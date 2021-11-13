@@ -3,23 +3,41 @@
     <header>
       <img @click="backToHome" class="pc-header" :src="require('@/assets/img/icon/Logo-PC.svg')" />
       <nav>
-        <router-link to="/attractions">探索景點</router-link>
-        <router-link to="/activities">節慶活動</router-link>
-        <router-link to="/food">品嚐美食</router-link>
+        <router-link v-for="(item, index) in state.navList" :key="index" :to="item.link">
+          {{ item.title }}
+        </router-link>
       </nav>
     </header>
   </div>
 </template>
 <script>
+import { reactive } from 'vue'
 import router from '@/router'
 
 export default {
   setup() {
+    const state = reactive({
+      navList: [
+        {
+          link: '/attractions',
+          title: '探索景點',
+        },
+        {
+          link: '/activities',
+          title: '節慶活動',
+        },
+        {
+          link: '/food',
+          title: '品嚐美食',
+        },
+      ],
+    })
     const backToHome = () => {
       router.push({ path: '/' })
     }
 
     return {
+      state,
       backToHome,
     }
   },
