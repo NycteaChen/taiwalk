@@ -1,7 +1,10 @@
 <template>
   <div class="header">
     <h1>{{ title }}</h1>
-    <router-link :to="{ path: `/${link}` }">{{ showMore }}</router-link>
+    <router-link v-if="!query" :to="{ path: `/${link}` }">{{ showMore }}</router-link>
+    <router-link v-else :to="{ path: `/${link}`, query: { name: query } }">
+      {{ showMore }}
+    </router-link>
   </div>
 </template>
 
@@ -21,6 +24,10 @@ export default {
       type: String,
       default: '',
     },
+    query: {
+      type: String,
+      default: '',
+    },
   },
 }
 </script>
@@ -28,11 +35,13 @@ export default {
 <style lang="scss" scoped>
 .header {
   width: 90%;
-  max-width: 345px;
+  /* max-width: 345px; */
   margin: auto;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  white-space: nowrap;
+  flex-wrap: wrap;
   h1 {
     font-size: 24px;
   }

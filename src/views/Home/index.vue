@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import HomePageTop from '@/components/_pages/homepage/HomePageTop'
-import RecentActivities from '@/components/_pages/homepage/RecentActivities'
+import HomePageTop from '@/components/_pages/home/HomePageTop'
+import RecentActivities from '@/components/_pages/home/RecentActivities'
 import Carousel from '@/components/Carousel'
 import Recommend from '@/components/Recommend'
 
