@@ -5,7 +5,7 @@
       <HotTopics :type="3" @getTopic="chooseTopic" />
     </template>
     <template v-if="state.topic">
-      <SearchResult />
+      <SearchResult :data="state.data" />
     </template>
   </div>
 </template>
@@ -28,6 +28,8 @@ export default {
       item: undefined,
       topic: undefined,
       showHotTopics: true,
+
+      data: [],
     })
 
     const backToCategory = () => {
