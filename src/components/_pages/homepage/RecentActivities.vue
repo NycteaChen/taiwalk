@@ -16,8 +16,9 @@
   </div>
 </template>
 <script>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 import ShowMoreHeader from '@/components/ShowMoreHeader'
+import { textFormat } from '@/assets/js/utils.js'
 
 export default {
   components: {
@@ -27,7 +28,7 @@ export default {
   setup() {
     const state = reactive({
       topic: '活動名稱最多可放二十八個字，超過時第二十八字要改成刪節改成刪節',
-      isSmallScreen: undefined,
+      isSmallScreen: true,
     })
 
     window.addEventListener(
@@ -44,19 +45,16 @@ export default {
 
     const topicFormate = text => {
       if (state.isSmallScreen) {
-        if (text.length > 14) {
-          const newText = text.slice(0, 13) + '...'
-          return newText
-        }
+        return textFormat(text, 14)
       } else {
-        if (text.length > 28) {
-          const newText = text.slice(0, 27) + '...'
-          return newText
-        }
+        return textFormat(text, 28)
       }
-
-      return text
     }
+    onMounted(() => {
+      if (window.innerWidth >= 768) {
+        state.isSmallScreen = false
+      }
+    })
 
     return {
       state,

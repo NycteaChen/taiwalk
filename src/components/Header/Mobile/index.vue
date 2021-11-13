@@ -57,16 +57,6 @@ export default {
       router.push({ path: '/' })
     }
 
-    window.addEventListener(
-      'resize',
-      e => {
-        if (e.target.innerWidth >= 768) {
-          state.showMobileMenu = false
-        }
-      },
-      false
-    )
-
     return {
       state,
       handleMobileMenu,
@@ -84,10 +74,7 @@ export default {
   width: 100%;
   height: 64px;
   background: #fff;
-  @media (min-width: 768px) {
-    border-bottom: 1px solid #e5e5e5;
-    margin-bottom: 20px;
-  }
+  border-bottom: 1px solid #e5e5e5;
 
   header {
     position: fixed;
@@ -99,12 +86,10 @@ export default {
     display: flex;
     align-items: center;
     background: #fff;
+    border-bottom: 1px solid #e5e5e5;
 
     .mobile-header {
       margin: auto;
-      @media (min-width: 768px) {
-        display: none;
-      }
     }
     .mobile-menu {
       position: fixed;
@@ -112,15 +97,6 @@ export default {
       top: 8px;
       height: 50px;
       width: 50px;
-
-      @media (min-width: 768px) {
-        display: none;
-      }
-    }
-    .pc-header {
-      @media (max-width: 768px) {
-        display: none;
-      }
     }
     img {
       &:hover {

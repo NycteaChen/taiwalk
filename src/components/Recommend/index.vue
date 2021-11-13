@@ -7,9 +7,9 @@
         src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
       />
       <div class="recommed-desc">
-        <h2>{{ topicFormate('龜山島牛奶海牛奶海牛奶海牛奶海') }}</h2>
+        <h2>{{ textFormat('龜山島牛奶海牛奶海牛奶海牛奶海', 10) }}</h2>
         <div>
-          <img class="spot" src="../../assets/img/icon/spot16.svg" />
+          <img class="spot" :src="require('@/assets/img/icon/spot16.svg')" />
           <span>宜蘭縣</span>
         </div>
       </div>
@@ -18,6 +18,7 @@
 </template>
 <script>
 import ShowMoreHeader from '../ShowMoreHeader'
+import { textFormat } from '@/assets/js/utils.js'
 
 export default {
   components: {
@@ -34,17 +35,8 @@ export default {
     },
   },
   setup() {
-    const topicFormate = text => {
-      if (text.length > 10) {
-        const newText = text.slice(0, 10) + '...'
-        return newText
-      }
-
-      return text
-    }
-
     return {
-      topicFormate,
+      textFormat,
     }
   },
 }

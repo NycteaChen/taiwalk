@@ -2,24 +2,27 @@
   <div class="top-bar">
     <router-link to="/">首頁&nbsp;</router-link>
 
-    <router-link v-if="city" :to="{ path: `/${category}` }">
+    <router-link v-if="nowTopic || state.city" :to="{ path: `/${category}` }" @click="init">
       /&nbsp;&nbsp;{{ renderCategory() }}
     </router-link>
     <span v-else>&nbsp;/&nbsp;&nbsp;{{ renderCategory() }}</span>
 
-    <template v-if="item">
-      <router-link v-if="item" :to="{ path: `/${category}/${city}` }">
-        /&nbsp;&nbsp;{{ city }}
+    <span v-if="nowTopic">&nbsp;/&nbsp;&nbsp;{{ nowTopic }}</span>
+
+    <template v-if="state.item">
+      <router-link v-if="state.item" :to="{ path: `/${category}/${state.city}` }">
+        /&nbsp;&nbsp;{{ state.city }}
       </router-link>
-      <span v-if="item">&nbsp;/&nbsp;&nbsp;{{ item }}</span>
+      <span v-if="state.item">&nbsp;/&nbsp;&nbsp;{{ state.item }}</span>
     </template>
 
-    <template v-if="city && !item">
-      <span>&nbsp;/&nbsp;&nbsp;{{ city }}</span>
+    <template v-if="state.city && !state.item">
+      <span>&nbsp;/&nbsp;&nbsp;{{ state.city }}</span>
     </template>
   </div>
 </template>
 <script>
+import { reactive, computed } from 'vue'
 export default {
   props: {
     category: {
@@ -30,12 +33,28 @@ export default {
       type: String,
       default: '',
     },
+    topic: {
+      type: String,
+      default: '',
+    },
     item: {
       type: String,
       default: '',
     },
   },
-  setup(props) {
+
+  emits: ['init'],
+
+  setup(props, { emit }) {
+    const state = reactive({
+      city: undefined,
+      topic: undefined,
+      item: undefined,
+    })
+
+    const nowTopic = computed(() => {
+      return props.topic
+    })
     const renderCategory = () => {
       switch (props.category) {
         case 'food':
@@ -48,8 +67,16 @@ export default {
           break
       }
     }
+
+    const init = () => {
+      emit('init')
+    }
+
     return {
+      state,
       renderCategory,
+      init,
+      nowTopic,
     }
   },
 }
