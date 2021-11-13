@@ -1,5 +1,5 @@
 <template>
-  <ShowMoreHeader :title="title" :show-more="showMore" />
+  <ShowMoreHeader :title="title" :show-more="showMore" :link="link" />
   <div class="recommend-items">
     <div v-for="index in 4" :key="index" class="recommend-item">
       <img
@@ -30,6 +30,10 @@ export default {
       default: '',
     },
     showMore: {
+      type: String,
+      default: '',
+    },
+    link: {
       type: String,
       default: '',
     },

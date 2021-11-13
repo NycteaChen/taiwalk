@@ -3,8 +3,8 @@
     <HomePageTop />
     <Carousel />
     <RecentActivities />
-    <Recommend :title="'熱門打卡景點'" :show-more="'查看更多景點'" />
-    <Recommend :title="'一再回訪美食'" :show-more="'查看更多美食'" />
+    <Recommend :title="'熱門打卡景點'" :show-more="'查看更多景點'" :link="'attractions'" />
+    <Recommend :title="'一再回訪美食'" :show-more="'查看更多美食'" :link="'food'" />
   </div>
 </template>
 

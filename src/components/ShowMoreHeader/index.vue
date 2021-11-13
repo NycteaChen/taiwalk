@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1>{{ title }}</h1>
-    <a>{{ showMore }}</a>
+    <router-link :to="{ path: `/${link}` }">{{ showMore }}</router-link>
   </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
       default: '',
     },
     showMore: {
+      type: String,
+      default: '',
+    },
+
+    link: {
       type: String,
       default: '',
     },

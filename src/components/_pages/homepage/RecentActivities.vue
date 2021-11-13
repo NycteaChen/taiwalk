@@ -1,5 +1,5 @@
 <template>
-  <ShowMoreHeader :title="'近期活動'" :show-more="'查看更多活動'" />
+  <ShowMoreHeader :title="'近期活動'" :show-more="'查看更多活動'" :link="'activities'" />
   <div class="recent-activities">
     <div class="recent-activity" v-for="index in 4" :key="index">
       <div class="event-img">
