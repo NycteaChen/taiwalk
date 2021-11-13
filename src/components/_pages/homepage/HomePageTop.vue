@@ -95,6 +95,8 @@ export default {
     }
   }
   .search-area {
+    margin-bottom: 38px;
+
     select,
     input,
     button {
@@ -169,6 +171,7 @@ export default {
       }
     }
     .search-area {
+      margin-bottom: 0;
       select,
       input,
       button {

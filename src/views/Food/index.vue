@@ -1,11 +1,8 @@
 <template>
   <div class="food">
-    <HintHeader :category="'food'" :topic="state.topic" @init="backToCategory" />
+    <HintHeader :category="'food'" />
     <template v-if="state.showHotTopics">
       <HotTopics :type="3" @getTopic="chooseTopic" />
-    </template>
-    <template v-if="state.topic">
-      <SearchResult :data="state.data" />
     </template>
   </div>
 </template>
@@ -13,23 +10,24 @@
 import { reactive } from 'vue'
 import HintHeader from '@/components/HintHeader'
 import HotTopics from '@/components/HotTopics'
-import SearchResult from '@/components/SearchResult'
 
 export default {
   components: {
     HintHeader,
     HotTopics,
-    SearchResult,
   },
 
   setup() {
     const state = reactive({
-      city: undefined,
-      item: undefined,
       topic: undefined,
       showHotTopics: true,
 
-      data: [],
+      data: [
+        {
+          title: '餐廳名稱名稱啦啦啦',
+          city: '基隆市',
+        },
+      ],
     })
 
     const backToCategory = () => {

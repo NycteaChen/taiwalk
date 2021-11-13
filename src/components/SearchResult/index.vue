@@ -8,23 +8,26 @@
         筆
       </span>
     </div>
-    <div v-if="data.length > 0" class="results">
-      <div v-for="index in 20" :key="index" class="result">
-        <router-link :to="{ path: `/food` }">
+    <div v-if="data?.length > 0" class="results">
+      <div v-for="(item, index) in data" :key="index" class="result">
+        <router-link
+          :to="{ path: `/${category}/location`, query: { city: item.city, name: item.title } }"
+        >
           <img
             class="result-img"
             src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
           />
           <div class="result-desc">
-            <div>{{ titleFormate(state.title) }}</div>
+            <div>{{ titleFormat(item.title) }}</div>
             <div>
               <img :src="require('@/assets/img/icon/spot16.svg')" />
-              <span>基隆市</span>
+              <span>{{ item.city }}</span>
             </div>
           </div>
         </router-link>
       </div>
     </div>
+
     <div v-else class="no-found">
       <img :src="require('@/assets/img/icon/nofound.svg')" />
       <div>
@@ -37,6 +40,7 @@
 
 <script>
 import { reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { textFormat } from '@/assets/js/utils.js'
 
 export default {
@@ -47,9 +51,12 @@ export default {
     },
   },
   setup() {
+    const router = useRouter()
+    const category = router.currentRoute._value.path.split('/')[1]
     const state = reactive({
-      title: '景點名稱景點名稱景點名稱景點名稱測試測試測試測試測試',
       isSmallScreen: true,
+
+      pageData: {},
     })
 
     window.addEventListener(
@@ -64,13 +71,14 @@ export default {
       false
     )
 
-    const titleFormate = text => {
+    const titleFormat = text => {
       if (state.isSmallScreen) {
         return textFormat(text, 21)
       } else {
         return textFormat(text, 13)
       }
     }
+
     onMounted(() => {
       if (window.innerWidth >= 768) {
         state.isSmallScreen = false
@@ -79,7 +87,8 @@ export default {
 
     return {
       state,
-      titleFormate,
+      category,
+      titleFormat,
     }
   },
 }

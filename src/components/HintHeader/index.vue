@@ -2,22 +2,26 @@
   <div class="top-bar">
     <router-link to="/">首頁&nbsp;</router-link>
 
-    <router-link v-if="nowTopic || state.city" :to="{ path: `/${category}` }" @click="init">
+    <router-link v-if="nowTopic || nowCity" :to="{ path: `/${category}` }" @click="initHotTopic">
       /&nbsp;&nbsp;{{ renderCategory() }}
     </router-link>
     <span v-else>&nbsp;/&nbsp;&nbsp;{{ renderCategory() }}</span>
 
     <span v-if="nowTopic">&nbsp;/&nbsp;&nbsp;{{ nowTopic }}</span>
 
-    <template v-if="state.item">
-      <router-link v-if="state.item" :to="{ path: `/${category}/${state.city}` }">
-        /&nbsp;&nbsp;{{ state.city }}
+    <template v-if="nowItem">
+      <router-link
+        v-if="nowItem"
+        :to="{ path: `/${category}/city`, query: { name: city } }"
+        @click="initCity"
+      >
+        /&nbsp;&nbsp;{{ nowCity }}
       </router-link>
-      <span v-if="state.item">&nbsp;/&nbsp;&nbsp;{{ state.item }}</span>
+      <span v-if="nowItem">&nbsp;/&nbsp;&nbsp;{{ nowItem }}</span>
     </template>
 
-    <template v-if="state.city && !state.item">
-      <span>&nbsp;/&nbsp;&nbsp;{{ state.city }}</span>
+    <template v-if="nowCity && !nowItem">
+      <span>&nbsp;/&nbsp;&nbsp;{{ nowCity }}</span>
     </template>
   </div>
 </template>
@@ -43,7 +47,7 @@ export default {
     },
   },
 
-  emits: ['init'],
+  emits: ['initHotTopic', 'initCity'],
 
   setup(props, { emit }) {
     const state = reactive({
@@ -55,6 +59,15 @@ export default {
     const nowTopic = computed(() => {
       return props.topic
     })
+
+    const nowCity = computed(() => {
+      return props.city
+    })
+
+    const nowItem = computed(() => {
+      return props.item
+    })
+
     const renderCategory = () => {
       switch (props.category) {
         case 'food':
@@ -68,15 +81,22 @@ export default {
       }
     }
 
-    const init = () => {
-      emit('init')
+    const initHotTopic = () => {
+      emit('initHotTopic')
+    }
+
+    const initCity = () => {
+      emit('initCity')
     }
 
     return {
       state,
       renderCategory,
-      init,
+      initHotTopic,
+      initCity,
       nowTopic,
+      nowCity,
+      nowItem,
     }
   },
 }
