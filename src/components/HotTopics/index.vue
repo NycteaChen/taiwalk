@@ -44,6 +44,7 @@ export default {
   margin: auto;
   h1 {
     font-size: 24px;
+    margin-bottom: 16px;
   }
   .topics {
     display: grid;
@@ -73,6 +74,9 @@ export default {
   }
   @media (min-width: 768px) {
     max-width: 1100px;
+    h1 {
+      margin-bottom: 12px;
+    }
     .topics {
       grid-template-columns: repeat(4, 1fr);
     }
