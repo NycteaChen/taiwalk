@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 .carousel-container {
   width: 90%;
-  max-width: 345px;
+  /* max-width: 345px; */
   margin: 0 auto 24px;
   position: relative;
 

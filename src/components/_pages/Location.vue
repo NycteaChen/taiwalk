@@ -10,7 +10,7 @@
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import HintHeader from '@/components/HintHeader'
-import Details from '@/components/Details'
+import Details from '@/components/_pages/details'
 
 export default {
   components: {
