@@ -14,25 +14,13 @@
 
       <nav>
         <router-link
+          v-for="(item, index) in state.navList"
+          :key="index"
           :class="{ open: state.showMobileMenu }"
-          to="/attractions"
+          :to="item.link"
           @click="state.showMobileMenu = false"
         >
-          探索景點
-        </router-link>
-        <router-link
-          :class="{ open: state.showMobileMenu }"
-          to="/activities"
-          @click="state.showMobileMenu = false"
-        >
-          節慶活動
-        </router-link>
-        <router-link
-          :class="{ open: state.showMobileMenu }"
-          to="/food"
-          @click="state.showMobileMenu = false"
-        >
-          品嚐美食
+          {{ item.title }}
         </router-link>
       </nav>
       <div v-if="state.showMobileMenu" :class="{ mask: state.showMobileMenu }" />
@@ -47,6 +35,21 @@ export default {
   setup() {
     const state = reactive({
       showMobileMenu: false,
+
+      navList: [
+        {
+          link: '/attractions',
+          title: '探索景點',
+        },
+        {
+          link: '/activities',
+          title: '節慶活動',
+        },
+        {
+          link: '/food',
+          title: '品嚐美食',
+        },
+      ],
     })
 
     const handleMobileMenu = () => {

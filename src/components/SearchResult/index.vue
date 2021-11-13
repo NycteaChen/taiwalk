@@ -148,9 +148,6 @@ export default {
           }
         }
       }
-      &:hover {
-        opacity: 0.7;
-      }
     }
   }
   @media (min-width: 768px) {

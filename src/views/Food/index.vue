@@ -1,8 +1,9 @@
 <template>
   <div class="food">
     <HintHeader :category="'food'" />
+    <Search :options="state.list" :defaultTopic="'全部分類'" />
     <template v-if="state.showHotTopics">
-      <HotTopics :type="3" @getTopic="chooseTopic" />
+      <HotTopics :type="3" @getTopic="chooseTopic" :topicList="state.list" />
     </template>
   </div>
 </template>
@@ -10,17 +11,21 @@
 import { reactive } from 'vue'
 import HintHeader from '@/components/HintHeader'
 import HotTopics from '@/components/HotTopics'
+import Search from '@/components/Search'
 
 export default {
   components: {
     HintHeader,
     HotTopics,
+    Search,
   },
 
   setup() {
     const state = reactive({
       topic: undefined,
       showHotTopics: true,
+
+      list: ['地方特產', '中式美食', '甜點冰品', '異國料理', '伴手禮', '素食'],
 
       data: [
         {

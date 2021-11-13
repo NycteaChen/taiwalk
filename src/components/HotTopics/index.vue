@@ -1,10 +1,10 @@
 <template>
   <div class="hot-topics">
-    <h1>熱門主題</h1>
+    <h1>熱門{{ type === 3 ? '分類' : '主題' }}</h1>
     <div class="topics">
-      <div v-for="(item, index) in state.topicList[type - 1]" :key="index" class="topic">
+      <div v-for="(item, index) in topicList" :key="index" class="topic">
         <router-link
-          :to="{ path: `/${state.typeList[type - 1]}/type`, query: { name: item } }"
+          :to="{ path: `/${renderType}/type`, query: { name: item } }"
           @click="choose(item)"
         >
           <img :src="require(`@/assets/img/hot-topics/Theme-bg${type}-${index + 1}.svg`)" />
@@ -15,24 +15,32 @@
   </div>
 </template>
 <script>
-import { reactive } from 'vue'
+import { computed } from 'vue'
 export default {
   props: {
     type: {
       type: Number,
       default: 0,
     },
+    topicList: {
+      type: Array,
+      default: () => [],
+    },
   },
   emits: ['getTopic'],
 
   setup(props, { emit }) {
-    const state = reactive({
-      topicList: [
-        ['自然風景類', '觀光工廠類', '遊憩類', '休閒農業類', '生態類', '溫泉類', '古蹟類'],
-        ['節慶活動', '自行車活動', '遊憩活動', '產業文化活動', '年度活動', '四季活動'],
-        ['地方特產', '中式美食', '甜點冰品', '異國料理', '伴手禮', '素食'],
-      ],
-      typeList: ['attractions', 'activities', 'food'],
+    const renderType = computed(() => {
+      switch (props.type) {
+        case 1:
+          return 'attractions'
+        case 2:
+          return 'Activities'
+        case 3:
+          return 'food'
+        default:
+          return ''
+      }
     })
 
     const choose = item => {
@@ -40,8 +48,8 @@ export default {
     }
 
     return {
-      state,
       choose,
+      renderType,
     }
   },
 }
