@@ -4,11 +4,11 @@
       <span>搜尋結果</span>
       <span>
         共有
-        <span>204</span>
+        <span>{{ data.length }}</span>
         筆
       </span>
     </div>
-    <div class="results">
+    <div v-if="data.length > 0" class="results">
       <div v-for="index in 20" :key="index" class="result">
         <router-link :to="{ path: `/food` }">
           <img
@@ -25,6 +25,13 @@
         </router-link>
       </div>
     </div>
+    <div v-else class="no-found">
+      <img :src="require('@/assets/img/icon/nofound.svg')" />
+      <div>
+        <div>目前查無資料</div>
+        <div>請重新搜尋</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -33,6 +40,12 @@ import { reactive, onMounted } from 'vue'
 import { textFormat } from '@/assets/js/utils.js'
 
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+  },
   setup() {
     const state = reactive({
       title: '景點名稱景點名稱景點名稱景點名稱測試測試測試測試測試',
@@ -147,6 +160,20 @@ export default {
       grid-template-columns: repeat(4, 1fr);
       grid-gap: 30px;
     }
+  }
+}
+
+.no-found {
+  text-align: center;
+  margin-top: 55px;
+  img {
+    margin: auto;
+  }
+  > div {
+    margin-top: 12px;
+    color: #7f977b;
+    font-size: 20px;
+    font-weight: 700;
   }
 }
 </style>
