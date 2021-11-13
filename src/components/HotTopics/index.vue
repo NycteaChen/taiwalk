@@ -3,7 +3,7 @@
     <h1>熱門主題</h1>
     <div class="topics">
       <div v-for="(item, index) in state.topicList[type - 1]" :key="index" class="topic">
-        <router-link :to="{ path: `/${state.typeList[type - 1]}` }">
+        <router-link :to="{ path: `/${state.typeList[type - 1]}` }" @click="choose(item)">
           <img :src="require(`@/assets/img/hot-topics/Theme-bg${type}-${index + 1}.svg`)" />
           <span>{{ item }}</span>
         </router-link>
@@ -20,7 +20,9 @@ export default {
       default: 0,
     },
   },
-  setup() {
+  emits: ['getTopic'],
+
+  setup(props, { emit }) {
     const state = reactive({
       topicList: [
         ['自然風景類', '觀光工廠類', '遊憩類', '休閒農業類', '生態類', '溫泉類', '古蹟類'],
@@ -30,8 +32,13 @@ export default {
       typeList: ['attractions', 'activities', 'food'],
     })
 
+    const choose = item => {
+      emit('getTopic', item)
+    }
+
     return {
       state,
+      choose,
     }
   },
 }
@@ -75,6 +82,7 @@ export default {
   @media (min-width: 768px) {
     max-width: 1100px;
     h1 {
+      font-size: 36px;
       margin-bottom: 12px;
     }
     .topics {
