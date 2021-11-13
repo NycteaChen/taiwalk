@@ -4,7 +4,7 @@
       class="now-img"
       src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
     />
-    <div class="img-site">新北市&nbsp;|&nbsp;不厭亭</div>
+    <div v-if="show" class="img-site">新北市&nbsp;|&nbsp;不厭亭</div>
     <div class="dots">
       <div class="dot" v-for="index in 6" :key="index">
         <img :src="require('@/assets/img/icon/carousel/Dot_selected.svg')" />
@@ -21,9 +21,24 @@
 // import arrowRight from '@/assets/img/icon/carousel/Arrow-Right.svg'
 // import arrowRightHover from '@/assets/img/icon/carousel/Arrow-Right_hover.svg'
 // import arrowRightDisable from '@/assets/img/icon/carousel/Arrow-Right_disable.svg'
+import { computed } from 'vue'
 
 export default {
-  setup() {},
+  props: {
+    showDesc: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    const show = computed(() => {
+      return props.showDesc
+    })
+
+    return {
+      show,
+    }
+  },
 }
 </script>
 
@@ -31,7 +46,7 @@ export default {
 .carousel-container {
   width: 90%;
   max-width: 345px;
-  margin: 38px auto 24px;
+  margin: 0 auto 24px;
   position: relative;
 
   .now-img {

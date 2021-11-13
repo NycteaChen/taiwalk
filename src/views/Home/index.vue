@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <HomePageTop />
-    <Carousel />
+    <Carousel :show-desc="true" />
     <RecentActivities />
     <Recommend :title="'熱門打卡景點'" :show-more="'查看更多景點'" :link="'attractions'" />
     <Recommend :title="'一再回訪美食'" :show-more="'查看更多美食'" :link="'food'" />

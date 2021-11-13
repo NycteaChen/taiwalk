@@ -3,7 +3,10 @@
     <h1>熱門主題</h1>
     <div class="topics">
       <div v-for="(item, index) in state.topicList[type - 1]" :key="index" class="topic">
-        <router-link :to="{ path: `/${state.typeList[type - 1]}` }" @click="choose(item)">
+        <router-link
+          :to="{ path: `/${state.typeList[type - 1]}/type`, query: { name: item } }"
+          @click="choose(item)"
+        >
           <img :src="require(`@/assets/img/hot-topics/Theme-bg${type}-${index + 1}.svg`)" />
           <span>{{ item }}</span>
         </router-link>
