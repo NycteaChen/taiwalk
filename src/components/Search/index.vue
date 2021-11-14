@@ -2,7 +2,7 @@
   <div class="search-area" :class="{ 'grid-five': category === 'activities' }">
     <Select :hint="defaultCity" :options="state.cityList" @getSelected="getCity" />
     <template v-if="category === 'activities'">
-      <!-- <DatePicker /> -->
+      <DatePicker @getSelected="getDate" />
     </template>
     <Select :hint="defaultTopic" :options="concatList" @getSelected="getTopic" />
     <Input @getInput="getInputText" />
@@ -15,14 +15,14 @@ import { useRouter } from 'vue-router'
 import Select from './Select'
 import Input from './Input'
 import Button from './Button'
-// import DatePicker from './DatePicker'
+import DatePicker from './DatePicker'
 
 export default {
   components: {
     Select,
     Input,
     Button,
-    // DatePicker,
+    DatePicker,
   },
   props: {
     options: {
@@ -77,12 +77,7 @@ export default {
     })
 
     const concatList = computed(() => {
-      let newList
-      if (category === 'food') {
-        newList = ['全部分類'].concat(props.options)
-      } else {
-        newList = ['全部主題'].concat(props.options)
-      }
+      let newList = [`全部${category === 'food' ? '分類' : '主題'}`].concat(props.options)
       return newList
     })
 
@@ -97,6 +92,10 @@ export default {
       state.form.text = item
     }
 
+    const getDate = item => {
+      state.form.date = item
+    }
+
     const search = () => {
       console.log(state.form)
     }
@@ -107,6 +106,7 @@ export default {
       getCity,
       getTopic,
       getInputText,
+      getDate,
       search,
       concatList,
     }
