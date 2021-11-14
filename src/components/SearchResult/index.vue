@@ -11,7 +11,11 @@
     <div v-if="data?.length > 0" class="results">
       <div v-for="(item, index) in data" :key="index" class="result">
         <router-link
-          :to="{ path: `/${category}/location`, query: { city: item.city, name: item.title } }"
+          :to="{
+            path: `/${category}/location`,
+            query: { city: item.city, name: item.title },
+            params: data,
+          }"
         >
           <div class="img-wrapper">
             <img
@@ -29,13 +33,9 @@
       </div>
     </div>
 
-    <div v-else class="no-found">
-      <img :src="require('@/assets/img/icon/nofound.svg')" />
-      <div>
-        <div>目前查無資料</div>
-        <div>請重新搜尋</div>
-      </div>
-    </div>
+    <template v-else>
+      <NoFound />
+    </template>
   </div>
 </template>
 
@@ -43,8 +43,12 @@
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { textFormat } from '@/assets/js/utils.js'
+import NoFound from '@/components/_pages/noFound'
 
 export default {
+  components: {
+    NoFound,
+  },
   props: {
     data: {
       type: Array,
@@ -175,20 +179,6 @@ export default {
       grid-template-columns: repeat(4, 1fr);
       grid-gap: 30px;
     }
-  }
-}
-
-.no-found {
-  text-align: center;
-  margin-top: 55px;
-  img {
-    margin: auto;
-  }
-  > div {
-    margin-top: 12px;
-    color: #7f977b;
-    font-size: 20px;
-    font-weight: 700;
   }
 }
 </style>
