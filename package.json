@@ -18,8 +18,11 @@
     "firebase": "^9.4.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "v-calendar": "^3.0.0-alpha.6",
     "vue": "^3.0.0",
+    "vue-dayjs-plugin": "^1.0.0",
     "vue-router": "^4.0.3",
+    "vue3-carousel": "^0.1.30",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

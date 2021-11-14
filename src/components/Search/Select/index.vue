@@ -74,17 +74,24 @@ export default {
   &-bar {
     cursor: pointer;
     height: 50px;
-    padding: 11px 30px;
+    padding: 13px 30px 11px;
     border-radius: 5px;
     border: 1px solid #e6e6e6;
     color: #7f977b;
     img {
       position: absolute;
-      top: 15px;
+      top: 17px;
       right: 23px;
       transition: 0.3s transform;
       &.transform {
         transform: rotate(-180deg);
+      }
+    }
+    @media (min-width: 950px) {
+      padding: 13px 20px 11px;
+      img {
+        right: 15px;
+        top: 17px;
       }
     }
   }
@@ -113,6 +120,7 @@ export default {
       padding: 11px 30px;
       height: 50px;
       background: #fff;
+      white-space: nowrap;
       & + li {
         border-top: 1px solid #e5e5e5;
       }
