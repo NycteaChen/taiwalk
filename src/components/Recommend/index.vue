@@ -1,18 +1,19 @@
 <template>
   <ShowMoreHeader :title="title" :show-more="showMore" :link="link" :query="query" />
   <div class="recommend-items">
-    <Carousel :breakpoints="breakpoints">
-      <Slide v-for="index in 4" :key="index">
+    <Carousel :breakpoints="breakpoints" :wrap-around="true">
+      <Slide v-for="index in 6" :key="index">
         <div class="recommend-item">
-          <img
-            class="photo"
-            src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-          />
+          <div class="photo-container">
+            <img
+              src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+            />
+          </div>
           <div class="recommed-desc">
             <h2>{{ textFormat('龜山島牛奶海牛奶海牛奶海牛奶海', 10) }}</h2>
             <div>
               <img class="spot" :src="require('@/assets/img/icon/spot16.svg')" />
-              <span>宜蘭縣</span>
+              <span>{{ index }}宜蘭縣</span>
             </div>
           </div>
         </div>
@@ -52,6 +53,10 @@ export default {
   },
   setup() {
     const breakpoints = {
+      0: {
+        itemsToShow: 1,
+        snapAlign: 'start',
+      },
       350: {
         itemsToShow: 1.5,
         snapAlign: 'start',
@@ -68,13 +73,9 @@ export default {
         itemsToShow: 3,
         snapAlign: 'start',
       },
-      978: {
-        itemsToShow: 3.5,
-        snapAlign: 'start',
-      },
       1100: {
         itemsToShow: 4,
-        snapAlign: 'center',
+        snapAlign: 'start',
       },
     }
     return {
@@ -94,10 +95,18 @@ export default {
     cursor: pointer;
     margin: auto 15px;
     text-align: left;
-    .photo {
-      width: 220px;
-      height: 160px;
+    .photo-container {
+      overflow: hidden;
       border-radius: 20px;
+      img {
+        width: 220px;
+        height: 160px;
+        border-radius: 20px;
+        transition: 0.5s transform;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
     }
     .recommed-desc {
       h2 {
@@ -116,6 +125,7 @@ export default {
     }
   }
   @media (min-width: 768px) {
+    max-width: 1100px;
     .recommend-item {
       .photo {
         width: 255px;

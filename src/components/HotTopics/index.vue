@@ -75,9 +75,10 @@ export default {
       cursor: pointer;
       max-width: 255px;
       position: relative;
-      transition: 0.3s opacity;
+      transition: 0.3s all;
       &:hover {
-        opacity: 0.7;
+        opacity: 0.8;
+        font-size: 18px;
       }
       span {
         white-space: nowrap;

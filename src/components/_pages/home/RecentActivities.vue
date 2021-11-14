@@ -104,6 +104,8 @@ export default {
       border-radius: 8px;
       .event-img {
         margin-right: 18px;
+
+        border-radius: 8px 0 0 8px;
         width: 160px;
         height: 160px;
         overflow: hidden;
@@ -112,9 +114,12 @@ export default {
           border-bottom-right-radius: unset;
           width: 160px;
           height: 160px;
-
           transition: 0.5s transform;
-          &:hover {
+        }
+      }
+      &:hover {
+        .event-img {
+          img {
             transform: scale(1.2);
           }
         }
