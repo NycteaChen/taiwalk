@@ -4,3 +4,14 @@ export function textFormat(text, num) {
   }
   return text
 }
+
+export function dateFormat(date) {
+  return date.split('T')[0]
+}
+
+export function renderImage(url, num1, num2) {
+  if (url) {
+    return url
+  }
+  return require(`@/assets/img/noImages/NoImage-${num1}x${num2}.svg`)
+}

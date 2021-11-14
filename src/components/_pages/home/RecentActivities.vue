@@ -1,16 +1,26 @@
 <template>
   <ShowMoreHeader :title="'近期活動'" :show-more="'查看更多活動'" :link="'activities'" />
   <div class="recent-activities">
-    <div class="recent-activity" v-for="index in 4" :key="index">
+    <div class="recent-activity" v-for="(item, index) in data" :key="index">
       <div class="event-img">
-        <img
-          src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-        />
+        <img :src="`${renderImage(item.Picture.PictureUrl1, 160, 160)}`" />
       </div>
+
       <div class="text-desc">
-        <div>2021/10/30 - 2021/11/13</div>
-        <div>{{ topicFormate(state.topic) }}</div>
-        <div>南投縣</div>
+        <div>{{ dateFormat(item.StartTime) }} ~ {{ dateFormat(item.EndTime) }}</div>
+        <div>{{ topicFormat(item.Name) }}</div>
+        <div :class="{ 'no-address': !item.Address }">
+          {{ item.Address && item.Address.slice(0, 3) }}
+        </div>
+        <router-link
+          :to="{
+            path: `/activities/location`,
+            query: { city: item.Address && item.Address.slice(0, 3), name: item.Name },
+          }"
+        >
+          <span>詳細介紹</span>
+          <img :src="require('@/assets/img/icon/arrow-right16_G.svg')" />
+        </router-link>
       </div>
     </div>
   </div>
@@ -18,11 +28,17 @@
 <script>
 import { reactive, onMounted } from 'vue'
 import ShowMoreHeader from '@/components/ShowMoreHeader'
-import { textFormat } from '@/assets/js/utils.js'
+import { textFormat, dateFormat, renderImage } from '@/assets/js/utils.js'
 
 export default {
   components: {
     ShowMoreHeader,
+  },
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   setup() {
@@ -43,7 +59,7 @@ export default {
       false
     )
 
-    const topicFormate = text => {
+    const topicFormat = text => {
       if (state.isSmallScreen) {
         return textFormat(text, 14)
       } else {
@@ -58,7 +74,9 @@ export default {
 
     return {
       state,
-      topicFormate,
+      topicFormat,
+      dateFormat,
+      renderImage,
     }
   },
 }
@@ -69,26 +87,42 @@ export default {
   max-width: 345px;
   margin: auto auto 36px;
   .recent-activity {
-    cursor: pointer;
     display: flex;
     margin-bottom: 16px;
     .event-img {
+      border-radius: 8px;
       img {
         width: 90px;
         border-radius: 8px;
         margin-right: 16px;
-        height: 62px;
       }
     }
     .text-desc {
       text-align: left;
       font-size: 12px;
+      position: relative;
       div {
         &:nth-child(2) {
           color: #2f2f2f;
           font-size: 15px;
           font-weight: 700;
           max-width: 210px;
+        }
+      }
+      a {
+        position: absolute;
+        bottom: 0;
+        color: #7f977b;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        cursor: pointer;
+        img {
+          margin-top: 2px;
+          height: 14px;
+        }
+        &:hover {
+          opacity: 0.7;
         }
       }
     }
@@ -104,7 +138,6 @@ export default {
       border-radius: 8px;
       .event-img {
         margin-right: 18px;
-
         border-radius: 8px 0 0 8px;
         width: 160px;
         height: 160px;
@@ -126,8 +159,8 @@ export default {
       }
       .text-desc {
         padding: 16px;
-        position: relative;
         font-size: 16px;
+        width: 50%;
         div {
           &:nth-child(2) {
             color: #2f2f2f;
@@ -148,6 +181,24 @@ export default {
               left: 0;
               bottom: 3px;
             }
+            &.no-address {
+              &::before {
+                background: unset;
+                position: unset;
+                width: 0;
+                height: 0;
+              }
+            }
+          }
+        }
+        a {
+          position: absolute;
+          right: 0;
+          bottom: 20px;
+          color: #7f977b;
+          margin-top: 10px;
+          img {
+            height: unset;
           }
         }
       }
@@ -166,6 +217,11 @@ export default {
           &:nth-child(2) {
             max-width: 320px;
           }
+        }
+        a {
+          position: absolute;
+          right: -75px;
+          bottom: 16px;
         }
       }
     }
