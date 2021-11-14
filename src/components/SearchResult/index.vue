@@ -13,10 +13,11 @@
         <router-link
           :to="{ path: `/${category}/location`, query: { city: item.city, name: item.title } }"
         >
-          <img
-            class="result-img"
-            src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-          />
+          <div class="img-wrapper">
+            <img
+              src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+            />
+          </div>
           <div class="result-desc">
             <div>{{ titleFormat(item.title) }}</div>
             <div>
@@ -129,8 +130,16 @@ export default {
       border-radius: 20px;
       cursor: pointer;
       transition: 0.3s opacity;
-      &-img {
+      .img-wrapper {
+        overflow: hidden;
         border-radius: 20px;
+        img {
+          border-radius: 20px;
+          transition: 0.5s transform;
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
       }
       &-desc {
         div {
