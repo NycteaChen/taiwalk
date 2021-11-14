@@ -8,16 +8,17 @@
             <img :src="`${renderImage(item.Picture.PictureUrl1, 255, 200)}`" />
           </div>
           <router-link
+            @click="selectItem(item)"
             :to="{
               path: `/${category}/location`,
-              query: { city: item.Address.slice(0, 3), name: item.Name },
+              query: { city: item.City, name: item.Name },
             }"
           >
             <div class="recommed-desc">
               <h2>{{ textFormat(`${item.Name}`, 10) }}</h2>
               <div>
                 <img class="spot" :src="require('@/assets/img/icon/spot16.svg')" />
-                <span>{{ item.Address.slice(0, 3) }}</span>
+                <span>{{ item.City }}</span>
               </div>
             </div>
           </router-link>
@@ -31,7 +32,7 @@ import ShowMoreHeader from '../ShowMoreHeader'
 import { textFormat } from '@/assets/js/utils.js'
 import { Carousel, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
-import { renderImage } from '@/assets/js/utils.js'
+import { renderImage, setStorage } from '@/assets/js/utils.js'
 
 export default {
   components: {
@@ -65,7 +66,8 @@ export default {
       default: '',
     },
   },
-  setup() {
+  emits: ['refresh'],
+  setup(props, { emit }) {
     const breakpoints = {
       0: {
         itemsToShow: 1,
@@ -93,10 +95,15 @@ export default {
       },
     }
 
+    const selectItem = item => {
+      setStorage(item)
+      emit('refresh', item)
+    }
     return {
       textFormat,
       breakpoints,
       renderImage,
+      selectItem,
     }
   },
 }

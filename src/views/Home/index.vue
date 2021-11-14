@@ -6,16 +6,16 @@
     <Recommend
       :title="'熱門打卡景點'"
       :show-more="'查看更多景點'"
-      :link="'attractions'"
+      :link="'ScenicSpot'"
       :data="state.scenicSpotList"
-      :category="'attractions'"
+      :category="'ScenicSpot'"
     />
     <Recommend
       :title="'一再回訪美食'"
       :show-more="'查看更多美食'"
-      :link="'food'"
+      :link="'Restaurant'"
       :data="state.restaurantList"
-      :category="'food'"
+      :category="'Restaurant'"
     />
   </div>
 </template>

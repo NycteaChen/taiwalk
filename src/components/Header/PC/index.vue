@@ -19,15 +19,15 @@ export default {
     const state = reactive({
       navList: [
         {
-          link: '/attractions',
+          link: '/ScenicSpot',
           title: '探索景點',
         },
         {
-          link: '/activities',
+          link: '/Activity',
           title: '節慶活動',
         },
         {
-          link: '/food',
+          link: '/Restaurant',
           title: '品嚐美食',
         },
       ],

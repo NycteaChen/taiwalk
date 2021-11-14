@@ -33,11 +33,11 @@ export default {
     const renderType = computed(() => {
       switch (props.type) {
         case 1:
-          return 'attractions'
+          return 'ScenicSpot'
         case 2:
-          return 'activities'
+          return 'Activity'
         case 3:
-          return 'food'
+          return 'Restaurant'
         default:
           return ''
       }

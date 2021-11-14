@@ -1,5 +1,5 @@
 <template>
-  <ShowMoreHeader :title="'近期活動'" :show-more="'查看更多活動'" :link="'activities'" />
+  <ShowMoreHeader :title="'近期活動'" :show-more="'查看更多活動'" :link="'Activities'" />
   <div class="recent-activities">
     <div class="recent-activity" v-for="(item, index) in data" :key="index">
       <div class="event-img">
@@ -9,13 +9,12 @@
       <div class="text-desc">
         <div>{{ dateFormat(item.StartTime) }} ~ {{ dateFormat(item.EndTime) }}</div>
         <div>{{ topicFormat(item.Name) }}</div>
-        <div :class="{ 'no-address': !item.Address }">
-          {{ item.Address && item.Address.slice(0, 3) }}
-        </div>
+        <div>{{ item.City }}</div>
         <router-link
+          @click="setStorage(item)"
           :to="{
-            path: `/activities/location`,
-            query: { city: item.Address && item.Address.slice(0, 3), name: item.Name },
+            path: `/Activity/location`,
+            query: { city: item.City, name: item.Name },
           }"
         >
           <span>詳細介紹</span>
@@ -28,7 +27,7 @@
 <script>
 import { reactive, onMounted } from 'vue'
 import ShowMoreHeader from '@/components/ShowMoreHeader'
-import { textFormat, dateFormat, renderImage } from '@/assets/js/utils.js'
+import { textFormat, dateFormat, renderImage, setStorage } from '@/assets/js/utils.js'
 
 export default {
   components: {
@@ -77,6 +76,7 @@ export default {
       topicFormat,
       dateFormat,
       renderImage,
+      setStorage,
     }
   },
 }
@@ -98,6 +98,7 @@ export default {
       }
     }
     .text-desc {
+      width: 200px;
       text-align: left;
       font-size: 12px;
       position: relative;
@@ -112,6 +113,7 @@ export default {
       a {
         position: absolute;
         bottom: 0;
+        left: 100px;
         color: #7f977b;
         display: flex;
         align-items: center;
@@ -181,22 +183,12 @@ export default {
               left: 0;
               bottom: 3px;
             }
-            &.no-address {
-              &::before {
-                background: unset;
-                position: unset;
-                width: 0;
-                height: 0;
-              }
-            }
           }
         }
         a {
-          position: absolute;
+          left: unset;
           right: 0;
-          bottom: 20px;
-          color: #7f977b;
-          margin-top: 10px;
+          bottom: 16px;
           img {
             height: unset;
           }
@@ -213,15 +205,14 @@ export default {
       max-width: 540px;
 
       .text-desc {
+        width: 300px;
         div {
           &:nth-child(2) {
             max-width: 320px;
           }
         }
         a {
-          position: absolute;
-          right: -75px;
-          bottom: 16px;
+          right: -40px;
         }
       }
     }

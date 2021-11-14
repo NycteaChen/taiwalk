@@ -1,6 +1,6 @@
 <template>
   <div class="activities">
-    <HintHeader :category="'activities'" />
+    <HintHeader :category="'Activity'" />
     <Search :options="state.list" />
     <template v-if="state.showHotTopics">
       <HotTopics :type="2" @getTopic="chooseTopic" :topicList="state.list" />

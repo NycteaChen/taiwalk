@@ -29,6 +29,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   setup(props) {
     const show = computed(() => {
