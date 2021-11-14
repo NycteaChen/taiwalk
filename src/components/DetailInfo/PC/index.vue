@@ -1,37 +1,41 @@
 <template>
-  <div class="info-container">
+  <div class="info-container" v-if="infoData">
     <div class="info">
       <div class="info-item">
         <div class="title">{{ renderCateGory().time }}時間：</div>
-        <div>2021/02/19 00:00 - 2021/02/28 00:00</div>
+        <div>{{ infoData?.OpenTime || '暫無提供' }}</div>
       </div>
       <div class="info-item">
         <div class="title">{{ renderCateGory().phone }}電話：</div>
-        <div>886-3-9545114</div>
+        <div v-if="infoData?.Phone">
+          <a :href="`${infoData.Phone}`">{{ infoData?.Phone }}</a>
+        </div>
+        <div v-else>暫無提供</div>
       </div>
-      <div v-if="category === 'activities'" class="info-item">
+      <div v-if="category === 'Activity'" class="info-item">
         <div class="title">主辦單位：</div>
         <div>苗栗市公所、苗栗市民代表會</div>
       </div>
       <div class="info-item">
         <div class="title">{{ renderCateGory().address }}：</div>
-        <div>苗栗火車站西站廣場</div>
+        <div>{{ infoData?.Address || '暫無提供' }}</div>
       </div>
       <div class="info-item">
         <div class="title">官方網站：</div>
-        <div>
-          <a href="http://www.art-fruit.com.tw/2021/index.html" target="_blank">
-            http://www.art-fruit.com.tw/2021/index.html
+        <div v-if="infoData?.WebsiteUrl">
+          <a :href="`${infoData.WebsiteUrl}`" target="_blank">
+            {{ infoData?.WebsiteUrl || '暫無提供' }}
           </a>
         </div>
+        <div v-else>暫無提供</div>
       </div>
-      <div v-if="category !== 'food'" class="info-item">
+      <div v-if="category !== 'Restaurant'" class="info-item">
         <div class="title">{{ renderCateGory().cost }}：</div>
-        <div>免費。</div>
+        <div>{{ infoData?.TicketInfo }}</div>
       </div>
-      <div v-if="category !== 'food'" class="info-item">
+      <div v-if="category !== 'Restaurant'" class="info-item">
         <div class="title">{{ renderCateGory().care }}：</div>
-        <div>1、愛護大自然生物，並請維護環境整潔。2、夏季日照與冬季寒風甚強，請預作防範</div>
+        <div>{{ infoData?.Remarks }}</div>
       </div>
     </div>
     <div class="position">
@@ -53,15 +57,21 @@
 import { useRouter } from 'vue-router'
 
 export default {
+  props: {
+    infoData: {
+      type: Object,
+      default: () => {},
+    },
+  },
   setup() {
     const router = useRouter()
     const category = router.currentRoute._value.path.split('/')[1]
 
     const renderCateGory = () => {
       switch (category) {
-        case 'food':
+        case 'Restaurant':
           return { time: '營業', phone: '聯絡', address: '餐廳地址' }
-        case 'activities':
+        case 'Activity':
           return {
             time: '活動',
             phone: '聯絡',
@@ -69,7 +79,7 @@ export default {
             cost: '活動費用',
             care: '注意事項',
           }
-        case 'attractions':
+        case 'ScenicSpot':
           return {
             time: '開放',
             phone: '服務',
@@ -81,7 +91,11 @@ export default {
           break
       }
     }
-    return { renderCateGory, category }
+
+    return {
+      renderCateGory,
+      category,
+    }
   },
 }
 </script>
@@ -117,6 +131,7 @@ export default {
         font-size: 18px;
         flex: 2;
         word-break: break-all;
+        padding-top: 3px;
 
         @media (min-width: 950px) {
           flex: 1;

@@ -1,9 +1,9 @@
 <template>
-  <HintHeader :category="category" :city="city" :item="name" />
+  <HintHeader :category="category" :city="state.city" :item="state.name" />
   <Details
-    :data="state.data"
     :title="`還有這些不能錯過的${renderShowMore()}`"
-    :show-more="`更多${city}${renderShowMore()}`"
+    :show-more="`更多${state.city}${renderShowMore()}`"
+    @refresh="getNewTitle"
   />
 </template>
 <script>
@@ -22,27 +22,34 @@ export default {
     const category = router.currentRoute._value.path.split('/')[1]
     const { city } = router.currentRoute._value.query
     const { name } = router.currentRoute._value.query
+
     const state = reactive({
-      data: { title: name, city: city },
+      name: name,
+      city: city,
     })
 
     const renderShowMore = () => {
       switch (category) {
-        case 'food':
+        case 'Restaurant':
           return '美食'
-        case 'attractions':
+        case 'ScenicSpot':
           return '景點'
-        case 'activities':
+        case 'Activity':
           return '活動'
       }
     }
 
+    const getNewTitle = item => {
+      state.name = item['Name']
+      state.city = item['City']
+      console.log('newnewnew', item)
+    }
+
     return {
       state,
-      name,
-      city,
       category,
       renderShowMore,
+      getNewTitle,
     }
   },
 }

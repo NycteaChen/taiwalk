@@ -1,7 +1,7 @@
 <template>
-  <div class="search-area" :class="{ 'grid-five': category === 'activities' }">
+  <div class="search-area" :class="{ 'grid-five': category === 'Activity' }">
     <Select :hint="defaultCity" :options="state.cityList" @getSelected="getCity" />
-    <template v-if="category === 'activities'">
+    <template v-if="category === 'Activity'">
       <DatePicker @getSelected="getDate" />
     </template>
     <Select :hint="defaultTopic" :options="concatList" @getSelected="getTopic" />
@@ -77,7 +77,7 @@ export default {
     })
 
     const concatList = computed(() => {
-      let newList = [`全部${category === 'food' ? '分類' : '主題'}`].concat(props.options)
+      let newList = [`全部${category === 'Restaurant' ? '分類' : '主題'}`].concat(props.options)
       return newList
     })
 

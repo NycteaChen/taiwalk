@@ -13,8 +13,7 @@
         <router-link
           :to="{
             path: `/${category}/location`,
-            query: { city: item.city, name: item.title },
-            params: data,
+            query: { city: item.City, name: item.title },
           }"
         >
           <div class="img-wrapper">
@@ -26,7 +25,7 @@
             <div>{{ titleFormat(item.title) }}</div>
             <div>
               <img :src="require('@/assets/img/icon/spot16.svg')" />
-              <span>{{ item.city }}</span>
+              <span>{{ item.City }}</span>
             </div>
           </div>
         </router-link>

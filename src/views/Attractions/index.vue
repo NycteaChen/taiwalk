@@ -1,6 +1,6 @@
 <template>
   <div class="attractions">
-    <HintHeader :category="'attractions'" />
+    <HintHeader :category="'ScenicSpot'" />
     <Search :options="state.list" />
     <template v-if="state.showHotTopics">
       <HotTopics :type="1" @getTopic="chooseTopic" :topicList="state.list" />

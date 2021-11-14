@@ -70,11 +70,11 @@ export default {
 
     const renderCategory = () => {
       switch (props.category) {
-        case 'food':
+        case 'Restaurant':
           return '在地美食'
-        case 'activities':
+        case 'Activity':
           return '節慶活動'
-        case 'attractions':
+        case 'ScenicSpot':
           return '探索景點'
         default:
           break

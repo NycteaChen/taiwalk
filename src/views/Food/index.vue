@@ -1,6 +1,6 @@
 <template>
   <div class="food">
-    <HintHeader :category="'food'" />
+    <HintHeader :category="'Restaurant'" />
     <Search :options="state.list" :defaultTopic="'全部分類'" />
     <template v-if="state.showHotTopics">
       <HotTopics :type="3" @getTopic="chooseTopic" :topicList="state.list" />

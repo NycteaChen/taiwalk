@@ -15,3 +15,7 @@ export function renderImage(url, num1, num2) {
   }
   return require(`@/assets/img/noImages/NoImage-${num1}x${num2}.svg`)
 }
+
+export function setStorage(item) {
+  localStorage.setItem('data', JSON.stringify(item))
+}
