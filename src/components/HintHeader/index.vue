@@ -61,7 +61,7 @@ export default {
     })
 
     const nowCity = computed(() => {
-      return props.city
+      return props.city || JSON.parse(localStorage.getItem('data'))?.Address.slice(0, 3)
     })
 
     const nowItem = computed(() => {

@@ -26,6 +26,7 @@ import HomePageTop from '@/components/_pages/home/HomePageTop'
 import RecentActivities from '@/components/_pages/home/RecentActivities'
 import Carousel from '@/components/Carousel'
 import Recommend from '@/components/Recommend'
+import { removeStorage } from '@/assets/js/utils.js'
 import Api from '@/assets/js/api/api.js'
 
 export default {
@@ -61,6 +62,7 @@ export default {
       await getScenicSpot()
       await getActivity()
       await getRestaurant()
+      removeStorage()
     })
     return {
       state,

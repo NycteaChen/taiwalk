@@ -1,17 +1,22 @@
 <template>
   <div class="carousel-container">
-    <img
-      class="now-img"
-      src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-    />
-    <div v-if="show" class="img-site">新北市&nbsp;|&nbsp;不厭亭</div>
-    <div class="dots">
-      <div class="dot" v-for="index in 6" :key="index">
-        <img :src="require('@/assets/img/icon/carousel/Dot_selected.svg')" />
+    <template v-if="show">
+      <img
+        class="now-img"
+        src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+      />
+      <div class="img-site">新北市&nbsp;|&nbsp;不厭亭</div>
+      <div class="dots">
+        <div class="dot" v-for="index in 6" :key="index">
+          <img :src="require('@/assets/img/icon/carousel/Dot_selected.svg')" />
+        </div>
       </div>
-    </div>
-    <div class="arrow-left" />
-    <div class="arrow-right" />
+      <div class="arrow-left" />
+      <div class="arrow-right" />
+    </template>
+    <template v-else>
+      <img class="now-img" :src="`${renderImage(data?.Picture?.PictureUrl1, 1100, 400)}`" />
+    </template>
   </div>
 </template>
 <script>
@@ -22,6 +27,7 @@
 // import arrowRightHover from '@/assets/img/icon/carousel/Arrow-Right_hover.svg'
 // import arrowRightDisable from '@/assets/img/icon/carousel/Arrow-Right_disable.svg'
 import { computed } from 'vue'
+import { renderImage } from '@/assets/js/utils'
 
 export default {
   props: {
@@ -41,6 +47,7 @@ export default {
 
     return {
       show,
+      renderImage,
     }
   },
 }
@@ -89,6 +96,7 @@ export default {
     }
     .now-img {
       border-radius: 24px;
+      width: 1100px;
     }
     .dots {
       right: 42px;

@@ -31,19 +31,22 @@
       </div>
       <div v-if="category !== 'Restaurant'" class="info-item">
         <div class="title">{{ renderCateGory().cost }}：</div>
-        <div>{{ infoData?.TicketInfo }}</div>
+        <div>{{ infoData?.TicketInfo || '暫無提供' }}</div>
       </div>
       <div v-if="category !== 'Restaurant'" class="info-item">
         <div class="title">{{ renderCateGory().care }}：</div>
-        <div>{{ infoData?.Remarks }}</div>
+        <div>{{ infoData?.Remarks || '暫無提供' }}</div>
       </div>
     </div>
     <div class="position">
-      <div class="map">
-        <img
-          src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-        />
+      <div class="google-map" id="map">
+        <GMapMap
+          :center="{ lat: state.positionLat, lng: state.positionLon }"
+          :zoom="17"
+          map-type-id="terrain"
+        ></GMapMap>
       </div>
+
       <div class="surround">
         <div class="title">周邊資訊：</div>
         <div class="surround-items">
@@ -55,6 +58,7 @@
 </template>
 <script>
 import { useRouter } from 'vue-router'
+import { reactive, onMounted } from 'vue'
 
 export default {
   props: {
@@ -66,6 +70,17 @@ export default {
   setup() {
     const router = useRouter()
     const category = router.currentRoute._value.path.split('/')[1]
+
+    const state = reactive({
+      positionLat: undefined,
+      positionLon: undefined,
+    })
+
+    const getStorage = () => {
+      const data = JSON.parse(localStorage.getItem('data')).Position
+      state.positionLat = data.PositionLat
+      state.positionLon = data.PositionLon
+    }
 
     const renderCateGory = () => {
       switch (category) {
@@ -91,8 +106,11 @@ export default {
           break
       }
     }
-
+    onMounted(() => {
+      getStorage()
+    })
     return {
+      state,
       renderCateGory,
       category,
     }
@@ -125,23 +143,13 @@ export default {
       margin-bottom: 12px;
 
       > div:first-of-type {
-        flex: 1;
+        width: 120px;
       }
       > div:last-of-type {
         font-size: 18px;
         flex: 2;
         word-break: break-all;
         padding-top: 3px;
-
-        @media (min-width: 950px) {
-          flex: 1;
-        }
-        @media (min-width: 978px) {
-          flex: 2;
-        }
-        @media (min-width: 1090px) {
-          flex: 3;
-        }
       }
       a {
         color: #6e7d60;
@@ -154,12 +162,11 @@ export default {
   }
 
   .position {
-    .map {
+    .google-map {
       margin: auto;
       margin-top: 30px;
-      img {
-        border-radius: 12px;
-        width: 540px;
+      /deep/ .vue-map-container {
+        /* width: 540px; */
         height: 250px;
       }
     }

@@ -71,7 +71,6 @@ export default {
 
     const getStorage = () => {
       state.detailData = JSON.parse(localStorage.getItem('data'))
-      console.log(state.detailData)
     }
 
     const getCityAll = async () => {

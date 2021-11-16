@@ -31,6 +31,17 @@ class Api {
       }
     ).then(res => res.json())
   }
+
+  // 只用關鍵字搜尋
+  static async getKeyWordData(category, word, num) {
+    const wordURL = encodeURI(word)
+    return await fetch(
+      `${site}/${category}?$filter=contains(Name%2C'${wordURL}')&$top=${num}&$format=JSON`,
+      {
+        headers: getAuthorizationHeader(),
+      }
+    ).then(res => res.json())
+  }
 }
 
 export default Api

@@ -19,3 +19,7 @@ export function renderImage(url, num1, num2) {
 export function setStorage(item) {
   localStorage.setItem('data', JSON.stringify(item))
 }
+
+export function removeStorage() {
+  localStorage.removeItem('data')
+}

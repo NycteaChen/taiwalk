@@ -11,18 +11,17 @@
     <div v-if="data?.length > 0" class="results">
       <div v-for="(item, index) in data" :key="index" class="result">
         <router-link
+          @click="setStorage(item)"
           :to="{
             path: `/${category}/location`,
-            query: { city: item.City, name: item.title },
+            query: { city: item.City, name: item.Name },
           }"
         >
           <div class="img-wrapper">
-            <img
-              src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-            />
+            <img :src="`${renderImage(item?.Picture?.PictureUrl1, 1100, 400)}`" />
           </div>
           <div class="result-desc">
-            <div>{{ titleFormat(item.title) }}</div>
+            <div>{{ titleFormat(item.Name) }}</div>
             <div>
               <img :src="require('@/assets/img/icon/spot16.svg')" />
               <span>{{ item.City }}</span>
@@ -41,7 +40,7 @@
 <script>
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { textFormat } from '@/assets/js/utils.js'
+import { textFormat, renderImage, setStorage } from '@/assets/js/utils.js'
 import NoFound from '@/components/_pages/noFound'
 
 export default {
@@ -93,6 +92,8 @@ export default {
       state,
       category,
       titleFormat,
+      renderImage,
+      setStorage,
     }
   },
 }

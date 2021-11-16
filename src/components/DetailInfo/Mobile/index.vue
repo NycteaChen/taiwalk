@@ -30,16 +30,18 @@
     </div>
     <div v-if="category !== 'Restaurant'" class="info-item">
       <div class="title">{{ renderCateGory().cost }}：</div>
-      <div>{{ infoData?.TicketInfo }}</div>
+      <div>{{ infoData?.TicketInfo || '暫無提供' }}</div>
     </div>
     <div v-if="category !== 'Restaurant'" class="info-item">
       <div class="title">{{ renderCateGory().care }}：</div>
-      <div>{{ infoData?.Remarks }}</div>
+      <div>{{ infoData?.Remarks || '暫無提供' }}</div>
     </div>
-    <div class="map">
-      <img
-        src="https://images.unsplash.com/photo-1480796927426-f609979314bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-      />
+    <div class="google-map">
+      <GMapMap
+        :center="{ lat: state.positionLat, lng: state.positionLon }"
+        :zoom="17"
+        map-type-id="terrain"
+      ></GMapMap>
     </div>
     <div class="surround">
       <div class="title">周邊資訊：</div>
@@ -57,6 +59,7 @@
 
 <script>
 import { useRouter } from 'vue-router'
+import { reactive, onMounted } from 'vue'
 
 export default {
   props: {
@@ -68,6 +71,17 @@ export default {
   setup() {
     const router = useRouter()
     const category = router.currentRoute._value.path.split('/')[1]
+
+    const state = reactive({
+      positionLat: undefined,
+      positionLon: undefined,
+    })
+
+    const getStorage = () => {
+      const data = JSON.parse(localStorage.getItem('data')).Position
+      state.positionLat = data.PositionLat
+      state.positionLon = data.PositionLon
+    }
 
     const renderCateGory = () => {
       switch (category) {
@@ -93,7 +107,15 @@ export default {
           break
       }
     }
-    return { renderCateGory, category }
+
+    onMounted(() => {
+      getStorage()
+    })
+    return {
+      state,
+      renderCateGory,
+      category,
+    }
   },
 }
 </script>
@@ -132,12 +154,12 @@ export default {
       }
     }
   }
-  .map {
+  .google-map {
+    width: 90%;
     margin: auto;
     margin-top: 30px;
-    max-width: 568px;
-    img {
-      border-radius: 12px;
+    /deep/ .vue-map-container {
+      height: 200px;
     }
   }
 

@@ -10,6 +10,7 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.4",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "ant-design-vue": "^2.2.8",
     "autoprefixer": "^9",

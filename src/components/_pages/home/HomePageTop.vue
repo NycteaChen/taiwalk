@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
 import { reactive } from 'vue'
 import Select from '@/components/Search/Select'
 import Input from '@/components/Search/Input'
@@ -41,6 +42,8 @@ export default {
       },
     })
 
+    const router = useRouter()
+
     const getCategory = item => {
       state.form.category = item
     }
@@ -50,7 +53,26 @@ export default {
     }
 
     const search = () => {
-      console.log(state.form)
+      switch (state.form.category) {
+        case '探索景點':
+          router.push({
+            path: 'ScenicSpot',
+            query: state.form.text ? { keyword: state.form.text } : undefined,
+          })
+          break
+        case '節慶活動':
+          router.push({
+            path: 'Activity',
+            query: state.form.text ? { keyword: state.form.text } : undefined,
+          })
+          break
+        case '在地美食':
+          router.push({
+            path: 'Restaurant',
+            query: state.form.text ? { keyword: state.form.text } : undefined,
+          })
+          break
+      }
     }
 
     return {
